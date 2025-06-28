@@ -1,0 +1,38 @@
+<div class="container-fluid bg-black text-center vh-100" style="position: fixed;">
+    <div class="game align-middle">
+            <div class="rows" *ngFor="let row of area; let i=index" #denenen>
+                <ng-container *ngFor="let kutu of row; let j =index">
+                    <div class="box" [class.yazili]="kutu.tus !== ''" [attr.id]="'box_' +i + j" #girilen><strong>{{kutu.tus}}</strong></div>
+                </ng-container>
+            </div>
+    </div>
+
+    <div class="sa container-sm fixed-bottom" style="max-width: 450px;">
+        <div style="display: flex;" class="klavye">
+            <ng-container *ngFor="let tus of klavye1">
+                <button (click)="catchbtn(tus.tus)" class="btn btn-outline-light">{{(tus.tus)}}</button>
+            </ng-container>
+        </div>
+        <div style="display: flex;"class="klavye">
+            <ng-container *ngFor="let tus of klavye2">
+                <button (click)="catchbtn(tus.tus)" class="btn btn-outline-light">{{(tus.tus)}}</button>
+            </ng-container>
+        </div>
+        <div style="display: flex;"class="klavye">
+            <ng-container *ngFor="let tus of klavye3">
+                <ng-container *ngIf="tus.tus=='ENTER'">
+                    <button (click)="gonder()" class="btn btn-success" style="width: 70px;">Enter</button>
+                </ng-container>
+                <ng-container *ngIf="tus.tus=='BACKSPACE'">
+                    <button (click)="deletebtn()" class="btn btn-danger" style="width: 70px;">Sil</button>
+                </ng-container>
+                <ng-container *ngIf="tus.tus!='ENTER' && tus.tus!='BACKSPACE'">
+                    <button (click)="catchbtn(tus.tus)" class="btn btn-outline-light">{{(tus.tus)}}</button>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="alert" id="hideMe">
+    </div>
+</div>
